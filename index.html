@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Railway Reservation System</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <link rel="icon" type="image/png" href="assests/railway-logo.png" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <nav>
+          <a href="/index.html" class="logo"><img src="/assests/images/logo.png" alt="" /></a>
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/train.html">Trains</a></li>
+            <li><a href="/login.html">Login</a></li>
+          </ul>
+        </nav>
+      </header>
+      <main>
+        <section class="search-section">
+          <h1>Book Your Train Tickets</h1>
+          <form id="search-form">
+            <input
+              id="fromCity"
+              type="text"
+              placeholder="From (City)"
+              required
+            />
+            <input id="toCity" type="text" placeholder="To (City)" required />
+            <!-- <input type="date" placeholder="Journey Date" required> -->
+            <button type="submit">Search</button>
+          </form>
+        </section>
+        <section class="results-section" id="results-section">
+          <!-- Search results will be displayed here -->
+        </section>
+      </main>
+    </div>
+      <footer class="content">
+        <p>&copy; 2024 Railway Reservation System</p>
+      </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>

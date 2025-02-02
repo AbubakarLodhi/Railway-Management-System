@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Train Booking - Railway Reservation System</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="assests/css/booking.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <link rel="icon" type="image/png" href="assests/railway-logo.png" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <nav>
+          <a href="/index.html" class="logo"
+            ><img src="/assests/images/logo.png" alt=""
+          /></a>
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/train.html">Trains</a></li>
+            <li><a href="/login.html">Login</a></li>
+          </ul>
+        </nav>
+      </header>
+
+      <main>
+        <section class="booking-section">
+          <h1>Confirm Your Booking</h1>
+
+          <div class="train-details">
+            <h2>Train Details</h2>
+            <p>
+              <strong>Departure:</strong>
+              <span id="departureTime">10:00 AM</span>
+            </p>
+            <p>
+              <strong>Arrival:</strong> <span id="arrivalTime">06:00 PM</span>
+            </p>
+            <p><strong>Duration:</strong> <span id="duration">8 hours</span></p>
+          </div>
+
+          <form id="passenger-form">
+            <h2>Passenger Details</h2>
+
+            <div class="input_wrapper">
+              <label for="name">Full Name</label>
+              <input type="text" id="name" name="name" required />
+            </div>
+
+            <div class="input_wrapper">
+              <label for="age">Age</label>
+              <input type="number" id="age" name="age" required />
+            </div>
+
+            <div class="input_wrapper">
+              <label for="gender">Gender</label>
+              <select id="gender" name="gender" required>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+
+            <div class="input_wrapper">
+              <label for="seatClass">Seat Class</label>
+              <select id="seatClass" name="seatClass" required>
+                <option value="sleeper">Sleeper</option>
+                <option value="ac1">AC 1st Class</option>
+                <option value="ac2">AC 2nd Class</option>
+                <option value="ac3">AC 3rd Class</option>
+              </select>
+            </div>
+
+            <div class="input_wrapper">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" required />
+            </div>
+
+            <div class="input_wrapper">
+              <label for="phone">Phone Number</label>
+              <input type="tel" id="phone" name="phone" required />
+            </div>
+            <div class="button_wrapper">
+              <button type="submit">Proceed to Payment</button>
+            </div>
+          </form>
+        </section>
+      </main>
+    </div>
+
+    <footer class="content">
+      <p>&copy; 2024 Railway Reservation System</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+      document.getElementById("passenger-form").addEventListener("submit", function(event) {
+        event.preventDefault(); // Prevent form submission
+
+        // Create alert with button
+        let alertBox = document.createElement("div");
+        alertBox.classList.add("custom-alert");
+
+        let message = document.createElement("h2");
+        message.innerText = "Thank you for submitting!";
+        alertBox.appendChild(message);
+        document.querySelector('body').classList.add('success');
+
+        let button = document.createElement("button");
+        button.innerText = "Go to Home";
+        button.classList.add("alert-button");
+        button.addEventListener("click", function() {
+          window.location.href = "index.html";
+        });
+
+        alertBox.appendChild(button);
+        document.body.appendChild(alertBox);
+      });
+    </script>
+
+  </body>
+</html>

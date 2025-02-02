@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Random Train Timetable</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="icon" type="image/png" href="assests/railway-logo.png" />
+    <link rel="stylesheet" href="assests/css/train.css" />
+  </head>
+
+  <body>
+    <div class="container">
+    <header>
+      <nav class="navbar">
+        <a href="/index.html" class="logo"><img src="/assests/images/logo.png" alt="" /></a>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/train.html">Trains</a></li>
+          <li><a href="/login.html">Login</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <h1>Random Train Timetable</h1>
+      <button id="generateBtn">Generate Timetable</button>
+      <table id="trainTable">
+        <thead>
+          <tr>
+            <th>Train Name</th>
+            <th>From</th>
+            <th>To</th>
+            <th>Departure</th>
+            <th>Arrival</th>
+            <th class="nope">Availability</th>
+          </tr>
+        </thead>
+        <tbody id="trainTableBody">
+          <!-- Train details will be added here -->
+        </tbody>
+      </table>
+    </main>
+  </div>
+    <footer>
+      <p>&copy; 2024 Railway Reservation System</p>
+    </footer>
+    <script>
+      const trainNames = [
+        "Shalimar",
+        "Millat",
+        "Hazara",
+        "Awami",
+        "Tezgam",
+        "Khyber Mail",
+      ];
+      const cities = [
+        "Lahore",
+        "Rawalpindi",
+        "Toba",
+        "Bhawalpur",
+        "Multan",
+        "Jhang",
+        "Shortkot",
+        "Sadiqabad",
+        "Okara",
+        "Sahiwal",
+        "Faisalabad",
+        "Gujrat",
+        "Sargodha",
+        "Jhelum",
+        "Hyderabad",
+        "Mehrapur",
+        "Rohri",
+        "Sukkur",
+        "Mirpur",
+        "Karachi",
+        "Khairpur",
+        "Ghotki",
+        "Tando Adam",
+        "Dharki",
+        "Peshawar",
+      ];
+
+      function getRandomTrainName() {
+        return trainNames[Math.floor(Math.random() * trainNames.length)];
+      }
+
+      function getRandomCity() {
+        return cities[Math.floor(Math.random() * cities.length)];
+      }
+
+      function getRandomTime() {
+        const hour = Math.floor(Math.random() * 12) + 1;
+        const minute = Math.floor(Math.random() * 60);
+        const ampm = Math.random() < 0.5 ? "AM" : "PM";
+        return `${hour.toString().padStart(2, "0")}:${minute
+          .toString()
+          .padStart(2, "0")} ${ampm}`;
+      }
+
+      function generateRandomAvailability() {
+        return Math.random() < 0.7 ? "Available" : "Waiting List";
+      }
+
+      function generateRandomTrainDetails() {
+        const trainName = getRandomTrainName();
+        const from = getRandomCity();
+        let to;
+        do {
+          to = getRandomCity();
+        } while (to === from);
+
+        const departure = getRandomTime();
+        const arrival = getRandomTime();
+        const availability = generateRandomAvailability();
+
+        return {
+          trainName,
+          from,
+          to,
+          departure,
+          arrival,
+          availability,
+        };
+      }
+
+      document.getElementById("generateBtn").addEventListener("click", () => {
+        const trainTableBody = document.getElementById("trainTableBody");
+        trainTableBody.innerHTML = "";
+
+        for (let i = 0; i < 25; i++) {
+          const trainDetails = generateRandomTrainDetails();
+          const row = document.createElement("tr");
+          row.innerHTML = `
+      <td>${trainDetails.trainName}</td>
+      <td>${trainDetails.from}</td>
+      <td>${trainDetails.to}</td>
+      <td>${trainDetails.departure}</td>
+      <td>${trainDetails.arrival}</td>
+      <td class="availability ${
+        trainDetails.availability === "Available" ? "available" : "waiting-list"
+      }">
+        ${trainDetails.availability}
+      </td>
+    `;
+          trainTableBody.appendChild(row);
+        }
+      });
+    </script>
+    <!-- <script src="script.js"></script> -->
+  </body>
+</html>
